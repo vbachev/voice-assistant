@@ -52,7 +52,9 @@ def OnButtonPush ( event ):
     dialog.ShowModal()
 
 def OnSavePush ( event ):
-    config.set( ID, 'format', field.GetValue())
+    config.set( ID, 'format', field.GetValue() )
+    fileHandle = open( __path__[0] + '/config.txt', 'w+' )
+    config.write( fileHandle )
     dialog.EndModal(1)
 
 def GetTime ():

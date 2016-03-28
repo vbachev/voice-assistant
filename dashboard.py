@@ -10,7 +10,7 @@ def initialize ( modules ):
     app.MainLoop()
 
 def createWindowFrame ():
-    frame = wx.Frame( None, -1, 'Assistant app' )
+    frame = wx.Frame( None, -1, 'Voice Assistant' )
     frame.Show()
     frame.Center()
     return frame
