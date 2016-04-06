@@ -8,19 +8,14 @@ config.read( __path__[0] + '/config.txt' )
 ID = 'clock'
 name = 'My Clock'
 
-def initialize ( speechEngine ):
+def Initialize ( speechEngine ):
     global name
     name = config.get( ID, 'name' )
 
 def CreateWidgetUI ( frame ):
     global uiFrame
-    global sizer
     global timeLabel
-
-    # UPDATE TIMER
-    timer = wx.Timer( frame )
-    frame.Bind( wx.EVT_TIMER, Update, timer )
-    timer.Start( 1000 )
+    global timer
 
     uiFrame = frame
     sizer = wx.BoxSizer()
@@ -29,13 +24,14 @@ def CreateWidgetUI ( frame ):
     button.Bind( wx.EVT_BUTTON, OnButtonPush )
     sizer.Add( timeLabel, wx.EXPAND | wx.ALL, 20 )
     sizer.Add( button, wx.EXPAND | wx.ALL, 20 )
+    frame.SetSizer( sizer )
 
-
-def GetWidgetSizer ():
-    return sizer
+    # UPDATE TIMER
+    timer = wx.Timer( uiFrame )
+    uiFrame.Bind( wx.EVT_TIMER, Update )
+    timer.Start( 1000 )
 
 def Update ( event ):
-    print 'sdasd'
     timeLabel.SetLabel( GetTime() )
 
 def OnButtonPush ( event ):

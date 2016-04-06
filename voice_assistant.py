@@ -8,8 +8,7 @@ import dashboard
 
 # speech synthesis engine
 speechEngine = pyttsx.init()
-# speechEngine.say('Hello!')
-# speechEngine.runAndWait()
+speechEngine.setProperty( 'rate', 100 )
 
 # load plugins from the ./modules folder:
 # - get all subfolder names in the ./modules folder; 
@@ -24,9 +23,9 @@ for name in moduleNames:
         # avoid module name conflicts by prefixing module names
         module = imp.load_module( 'module_' + name, fileHandle, pathName, description )
         modules[ name ] = module
-        module.initialize( speechEngine )
+        module.Initialize( speechEngine )
     except Exception as err:
         print err
 
 # initialize dashboard
-dashboard.initialize( modules )
+dashboard.Initialize( modules )
