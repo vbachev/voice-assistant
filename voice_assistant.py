@@ -8,7 +8,7 @@ import dashboard
 
 # speech synthesis engine
 speechEngine = pyttsx.init()
-speechEngine.setProperty( 'rate', 100 )
+speechEngine.setProperty( 'rate', 150 )
 
 # load plugins from the ./modules folder:
 # - get all subfolder names in the ./modules folder; 
