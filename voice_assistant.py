@@ -11,8 +11,8 @@ speechEngine = pyttsx.init()
 speechEngine.setProperty( 'rate', 150 )
 
 # load plugins from the ./modules folder:
-# - get all subfolder names in the ./modules folder; 
-# - search for valid modules; 
+# - get all subfolder names in the ./modules folder
+# - search for valid modules
 # - load and initialize them
 modulesFolder = './modules/'
 modules = {}

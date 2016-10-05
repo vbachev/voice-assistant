@@ -32,5 +32,6 @@ def CreateWidgetUI ( frame ):
     frame.SetSizer( sizer )
 
 def OnButtonPush ( event ):
-    _speechEngine.say( 'Lorem ipsum dolor sit amet' )
+    _speechEngine.say(' ') # needed for an ubuntu issue?
+    _speechEngine.say( 'Lorem ipsum dolor sit amet.' )
     _speechEngine.runAndWait()

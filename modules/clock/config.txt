@@ -1,5 +1,0 @@
-[clock]
-name = My Time Clock Widget
-format = #H:#M:#S
-zone = GMT+2
-
