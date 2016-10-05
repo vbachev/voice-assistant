@@ -47,7 +47,10 @@ def GetFeed ():
 
         xmlRoot = ElementTree.fromstring( responseText )
         for item in xmlRoot[ 0 ].findall( 'item' ):
-            newsFeed.append( item.find( 'title' ).text )
+            newsFeed.append( config.newsMessage.format(
+                item.find( 'title' ).text.encode('ascii', 'ignore'),
+                item.find( 'description' ).text.encode('ascii', 'ignore')
+            ))
 
     except urllib2.URLError:
         newsFeed.append( config.errorMessage )

@@ -1,4 +1,4 @@
-buttonLabel = 'Latest Twitter status'
+buttonLabel = 'Read latest tweet'
 
 # twitter user: @voice_assistant
 consumerKey       = 'uI8tuUGFIvYknXD7T49pnsCt4'
