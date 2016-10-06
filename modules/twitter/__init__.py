@@ -7,18 +7,14 @@ tweets = []
 tweetsLength = 0
 tweetsIndex = 0
 
-api = twitter.Api(consumer_key=config.consumerKey,
-                  consumer_secret=config.consumerSecret,
-                  access_token_key=config.accessTokenKey,
-                  access_token_secret=config.accessTokenSecret)
-
 def Initialize ( speechEngine ):
     global _speechEngine
     _speechEngine = speechEngine
-    LoadTweets()
 
 def CreateWidgetUI ( frame ):
     global uiFrame
+    global api
+
     uiFrame = frame
 
     button = wx.Button( uiFrame, label = config.buttonLabel )
@@ -27,6 +23,12 @@ def CreateWidgetUI ( frame ):
     sizer = wx.BoxSizer()
     sizer.Add( button )
     frame.SetSizer( sizer )
+    
+    api = twitter.Api(consumer_key=config.consumerKey,
+                      consumer_secret=config.consumerSecret,
+                      access_token_key=config.accessTokenKey,
+                      access_token_secret=config.accessTokenSecret)
+    LoadTweets()
 
 def OnButtonPush ( event ):
     global tweetsIndex
@@ -47,14 +49,18 @@ def LoadTweets ():
     global tweetsIndex
     global tweetsLength
 
-    tweetObjects = api.GetHomeTimeline(count=10)
-    tweets = []
-    tweetsIndex = 0
-    tweetsLength = len(tweetObjects)
+    try:
+        tweetObjects = api.GetHomeTimeline(count=10)
+        tweets = []
+        tweetsIndex = 0
+        tweetsLength = len(tweetObjects)
 
-    for tweetObject in tweetObjects:
-        tweet = tweetObject.AsDict()
-        tweetAuthor = tweet['user']['name'].encode('ascii', 'ignore')
-        tweetText = tweet['text'].encode('ascii', 'ignore')
-        tweetText = re.sub('http[\w\W]+$', '', tweetText) # remove URLs
-        tweets.append( config.tweetMessage.format( tweetAuthor, tweetText ))
+        for tweetObject in tweetObjects:
+            tweet = tweetObject.AsDict()
+            tweetAuthor = tweet['user']['name'].encode('ascii', 'ignore')
+            tweetText = tweet['text'].encode('ascii', 'ignore')
+            tweetText = re.sub('http[\w\W]+$', '', tweetText) # remove URLs
+            tweets.append( config.tweetMessage.format( tweetAuthor, tweetText ))
+
+    except:
+        tweets.append( config.errorMessage )

@@ -10,7 +10,6 @@ newsFeedLength = 0
 def Initialize ( speechEngine ):
     global _speechEngine
     _speechEngine = speechEngine
-    GetFeed()
 
 def CreateWidgetUI ( frame ):
     global uiFrame
@@ -22,6 +21,8 @@ def CreateWidgetUI ( frame ):
     sizer = wx.BoxSizer()
     sizer.Add( button )
     frame.SetSizer( sizer )
+    
+    GetFeed()
 
 def OnButtonPush ( event ):
     global newsFeedIndex

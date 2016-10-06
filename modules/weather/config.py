@@ -8,4 +8,4 @@ location = 'Sofia'
 
 temperatureMessage = 'Temperature in {0} is {1} degrees celsius.'
 humidityMessage = 'Humidity is {0} percent.'
-errorMessage = 'Sorry! No weather data available due to network error.'
+errorMessage = 'Sorry! No weather data available due to connection error.'
